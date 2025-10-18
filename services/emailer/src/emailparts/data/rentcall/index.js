@@ -16,19 +16,26 @@ function _avoidWeekend(aMoment) {
 export async function get(tenantId, params) {
   const momentTerm = moment(params.term, 'YYYYMMDDHH');
   const momentToday = moment();
-
   const { landlord, tenant, period } = await Invoice.get(tenantId, params);
   const beginDate = moment(tenant.contract.beginDate);
-
+  
+  // Récupérer dueDateDay du lease (valeur par défaut: 1)
+  const dueDateDay = tenant.contract.lease.dueDateDay || 1;
+  const timeRange = tenant.contract.lease.timeRange;
+  
   let dueDate = moment(momentTerm);
-  if (tenant.contract.lease.timeRange === 'years') {
+  
+  if (timeRange === 'years') {
     dueDate.add(1, 'months');
-  } else if (tenant.contract.lease.timeRange === 'months') {
-    dueDate.add(10, 'days');
-  } else if (tenant.contract.lease.timeRange === 'weeks') {
+    dueDate.date(dueDateDay); // Utiliser dueDateDay au lieu de +10 jours
+  } else if (timeRange === 'months') {
+    dueDate.date(dueDateDay); // Utiliser dueDateDay au lieu de +10 jours
+  } else if (timeRange === 'weeks') {
     dueDate.add(2, 'days');
   }
+  
   _avoidWeekend(dueDate);
+  
   if (dueDate.isBefore(beginDate)) {
     dueDate = moment(beginDate);
   }

@@ -6,18 +6,23 @@ import {
   Service
 } from '@microrealestate/common';
 import routes from './routes.js';
+import { getPublicProperties } from './controllers/public.js';
 
 Main();
 
 async function onStartUp(application: Express.Application) {
+  // --- Route publique AVANT toute protection ---
+  application.get('/api/public/properties', getPublicProperties);
+
+  // --- Middleware protégé pour le reste ---
   application.use(
     Middlewares.needAccessToken(
       Service.getInstance().envConfig.getValues().ACCESS_TOKEN_SECRET
     ),
     Middlewares.checkOrganization(),
     Middlewares.onlyTypes(['user']),
-    Middlewares.onlyRoles(['tenant'])
   );
+
   application.use('/tenantapi', routes);
 }
 

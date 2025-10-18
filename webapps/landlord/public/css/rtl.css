@@ -1,0 +1,34 @@
+/* RTL Support for Arabic */
+html[dir="rtl"] {
+  direction: rtl;
+}
+
+html[dir="rtl"] body {
+  text-align: right;
+}
+
+/* Inverser les marges et padding */
+html[dir="rtl"] .ml-2 { margin-left: 0; margin-right: 0.5rem; }
+html[dir="rtl"] .mr-2 { margin-right: 0; margin-left: 0.5rem; }
+html[dir="rtl"] .pl-4 { padding-left: 0; padding-right: 1rem; }
+html[dir="rtl"] .pr-4 { padding-right: 0; padding-left: 1rem; }
+
+/* Inverser les flex */
+html[dir="rtl"] .flex-row { flex-direction: row-reverse; }
+
+/* Inverser les icônes de navigation */
+html[dir="rtl"] .rotate-left { transform: scaleX(-1); }
+html[dir="rtl"] .rotate-right { transform: scaleX(-1); }
+
+/* Tableaux */
+html[dir="rtl"] table {
+  direction: rtl;
+}
+
+html[dir="rtl"] .text-left {
+  text-align: right;
+}
+
+html[dir="rtl"] .text-right {
+  text-align: left;
+}

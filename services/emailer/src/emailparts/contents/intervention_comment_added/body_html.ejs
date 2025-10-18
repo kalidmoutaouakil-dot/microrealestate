@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background-color: #9C27B0; color: white; padding: 20px; text-align: center; border-radius: 5px 5px 0 0; }
+        .content { background-color: #f9f9f9; padding: 20px; border: 1px solid #ddd; }
+        .comment-box { background-color: #f3e5f5; padding: 15px; margin: 15px 0; border-left: 4px solid #9C27B0; border-radius: 3px; }
+        .info-row { padding: 5px 0; }
+        .footer { text-align: center; padding: 20px; color: #666; font-size: 12px; }
+        .button { display: inline-block; padding: 12px 24px; background-color: #9C27B0; color: white; text-decoration: none; border-radius: 5px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💬 Nouveau commentaire sur une intervention</h1>
+        </div>
+        <div class="content">
+            <p>Bonjour,</p>
+            
+            <p>Votre locataire <strong><%= tenantName %></strong> a ajouté un commentaire sur une demande d'intervention.</p>
+            
+            <div class="comment-box">
+                <div class="info-row">
+                    <strong>📋 Intervention :</strong> <%= title %>
+                </div>
+                <div class="info-row">
+                    <strong>📍 Bien concerné :</strong> <%= propertyName %>
+                </div>
+                <div class="info-row">
+                    <strong>👤 Auteur :</strong> <%= commentAuthor %>
+                </div>
+                <div class="info-row">
+                    <strong>📅 Date :</strong> <%= commentDate %>
+                </div>
+                
+                <div style="margin-top: 15px;">
+                    <strong>💬 Commentaire :</strong>
+                    <p style="background: white; padding: 10px; margin-top: 5px; border-radius: 3px; font-style: italic;">
+                        "<%= commentMessage %>"
+                    </p>
+                </div>
+            </div>
+            
+            <p>Consultez l'intervention pour répondre à votre locataire.</p>
+            
+            <center>
+                <a href="<%= process.env.APP_URL || 'https://mre.mpcz.fr' %>/landlord" class="button">
+                    Voir l'intervention
+                </a>
+            </center>
+            
+            <p>Cordialement,<br>
+            <strong><%= process.env.APP_NAME || 'SMMS' %></strong></p>
+        </div>
+        <div class="footer">
+            <p>Cet email a été envoyé automatiquement, merci de ne pas y répondre.</p>
+        </div>
+    </div>
+</body>
+</html>

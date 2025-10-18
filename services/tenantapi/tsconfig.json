@@ -5,7 +5,8 @@
     "outDir": "dist",
     "skipLibCheck": true,
     "strict": true,
-    "target": "ESNext"
+    "target": "ESNext",
+    "allowJs": true
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "src/**/*.d.ts"]
 }

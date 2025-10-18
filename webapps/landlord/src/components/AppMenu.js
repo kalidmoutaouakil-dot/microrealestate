@@ -4,7 +4,8 @@ import {
   LuMenu,
   LuSettings,
   LuUserCircle,
-  LuWallet
+  LuWallet,
+  LuWrench
 } from 'react-icons/lu';
 import {
   Sheet,
@@ -57,6 +58,13 @@ const menuItems = [
     pathname: '/properties',
     Icon: LuKeyRound,
     dataCy: 'propertiesNav'
+  },
+  {
+    key: 'interventions',
+    labelId: 'Interventions',
+    pathname: '/interventions',
+    Icon: LuWrench,
+    dataCy: 'interventionsNav'
   },
   {
     key: 'accounting',

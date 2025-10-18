@@ -1,0 +1,25 @@
+💬 NOUVEAU MESSAGE DU PROPRIÉTAIRE
+
+Bonjour <%= tenantName %>,
+
+Le propriétaire a ajouté un message concernant votre demande d'intervention.
+
+DÉTAILS
+-------
+Intervention : <%= title %>
+Bien concerné : <%= propertyName %>
+Auteur : <%= commentAuthor %>
+Date : <%= commentDate %>
+
+MESSAGE
+-------
+"<%= commentMessage %>"
+
+Vous pouvez consulter l'intervention et répondre depuis votre espace locataire :
+<%= process.env.APP_TENANT_URL || 'https://mre.mpcz.fr/tenant' %>/fr/interventions
+
+Cordialement,
+<%= process.env.APP_NAME || 'SMMS' %>
+
+---
+Cet email a été envoyé automatiquement, merci de ne pas y répondre.

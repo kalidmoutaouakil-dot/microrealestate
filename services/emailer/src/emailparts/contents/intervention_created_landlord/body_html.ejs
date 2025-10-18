@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background-color: #FF9800; color: white; padding: 20px; text-align: center; border-radius: 5px 5px 0 0; }
+        .content { background-color: #f9f9f9; padding: 20px; border: 1px solid #ddd; }
+        .alert-box { background-color: #fff3cd; padding: 15px; margin: 15px 0; border-left: 4px solid #FF9800; }
+        .info-row { padding: 8px 0; border-bottom: 1px solid #eee; }
+        .footer { text-align: center; padding: 20px; color: #666; font-size: 12px; }
+        .button { display: inline-block; padding: 12px 24px; background-color: #FF9800; color: white; text-decoration: none; border-radius: 5px; margin: 20px 0; }
+        .priority-urgent { color: #d32f2f; font-weight: bold; }
+        .priority-high { color: #f57c00; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔔 Nouvelle demande d'intervention</h1>
+        </div>
+        <div class="content">
+            <p>Bonjour,</p>
+            
+            <p>Une nouvelle demande d'intervention a été soumise par votre locataire.</p>
+            
+            <div class="alert-box">
+                <h3><%= title %></h3>
+                
+                <div class="info-row">
+                    <strong>👤 Locataire :</strong> <%= tenantName %>
+                </div>
+                <div class="info-row">
+                    <strong>📧 Email :</strong> <%= tenantEmail %>
+                </div>
+                <% if (tenantPhone && tenantPhone !== 'Non renseigné') { %>
+                <div class="info-row">
+                    <strong>📞 Téléphone :</strong> <%= tenantPhone %>
+                </div>
+                <% } %>
+                <div class="info-row">
+                    <strong>📍 Bien concerné :</strong> <%= propertyName %>
+                </div>
+                <div class="info-row">
+                    <strong>📂 Catégorie :</strong> <%= category %>
+                </div>
+                <div class="info-row">
+                    <strong>⚠️ Priorité :</strong> 
+                    <% if (priority === 'Urgente') { %>
+                        <span class="priority-urgent"><%= priority %></span>
+                    <% } else if (priority === 'Haute') { %>
+                        <span class="priority-high"><%= priority %></span>
+                    <% } else { %>
+                        <%= priority %>
+                    <% } %>
+                </div>
+                <div class="info-row">
+                    <strong>📅 Date de création :</strong> <%= createdDate %>
+                </div>
+                
+                <div style="margin-top: 15px;">
+                    <strong>📝 Description :</strong>
+                    <p style="background: white; padding: 10px; margin-top: 5px; border-radius: 3px;"><%= description %></p>
+                </div>
+            </div>
+            
+            <p>Vous pouvez consulter et traiter cette demande depuis votre espace de gestion.</p>
+            
+            <center>
+                <a href="<%= process.env.APP_URL || 'https://mre.mpcz.fr' %>/landlord" class="button">
+                    Gérer les interventions
+                </a>
+            </center>
+            
+            <p>Cordialement,<br>
+            <strong><%= process.env.APP_NAME || 'SMMS' %></strong></p>
+        </div>
+        <div class="footer">
+            <p>Cet email a été envoyé automatiquement, merci de ne pas y répondre.</p>
+        </div>
+    </div>
+</body>
+</html>

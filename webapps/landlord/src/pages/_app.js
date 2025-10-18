@@ -1,5 +1,6 @@
 import '../styles/globals.css';
 import 'moment/locale/fr';
+import 'moment/locale/ar';
 import 'moment/locale/pt';
 import 'moment/locale/de';
 import 'moment/locale/es';
@@ -8,9 +9,7 @@ import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import 'react-awesome-lightbox/build/style.css';
 import '../components/PdfViewer/pdfviewer.css';
 import '../components/RichTextEditor/richtexteditor.css';
-
 import * as Yup from 'yup';
-
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Application from '../components/Application';
 import config from '../config';
@@ -22,10 +21,12 @@ import { Roboto } from 'next/font/google';
 import theme from '../styles/theme';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { useEffect } from 'react';
+import { useRouter } from 'next/router'; // ← AJOUTÉ
 
 const queryClient = new QueryClient();
 
 const APP_TITLE = [config.APP_NAME, 'Landlord'];
+
 if (config.NODE_ENV === 'development') {
   APP_TITLE.push('DEV');
 } else if (config.DEMO_MODE) {
@@ -58,7 +59,10 @@ const roboto = Roboto({
 
 function MyApp(props) {
   const { Component, pageProps } = props;
-  moment.locale(pageProps?.__lang ?? 'en');
+  const router = useRouter(); // ← AJOUTÉ
+  const { locale } = router; // ← AJOUTÉ
+  
+  moment.locale(pageProps?.__lang ?? locale ?? 'en');
 
   useEffect(() => {
     // Remove the server-side injected CSS.
@@ -67,6 +71,34 @@ function MyApp(props) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
   }, []);
+
+  // ↓ BLOC AJOUTÉ : Support RTL pour l'arabe
+  useEffect(() => {
+    const isRTL = locale === 'ar-MA' || locale === 'ar';
+    
+    // Définir la direction du document
+    document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+    document.documentElement.setAttribute('lang', locale || 'en');
+    
+    // Charger le CSS RTL si nécessaire
+    if (isRTL) {
+      const existingLink = document.getElementById('rtl-css');
+      if (!existingLink) {
+        const link = document.createElement('link');
+        link.id = 'rtl-css';
+        link.rel = 'stylesheet';
+        link.href = `${config.BASE_PATH}/css/rtl.css`;
+        document.head.appendChild(link);
+      }
+    } else {
+      // Retirer le CSS RTL si on change de langue
+      const existingLink = document.getElementById('rtl-css');
+      if (existingLink) {
+        existingLink.remove();
+      }
+    }
+  }, [locale]);
+  // ↑ FIN DU BLOC AJOUTÉ
 
   return (
     <>

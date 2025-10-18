@@ -7,7 +7,9 @@ export const QueryKeys = {
   PROPERTIES: 'properties',
   TENANTS: 'tenants',
   RENTS: 'rents',
-  LEASES: 'leases'
+  LEASES: 'leases',
+  INTERVENTIONS: 'interventions',
+  INTERVENTION: 'intervention'
 };
 
 export async function fetchDashboard(store) {
@@ -71,5 +73,29 @@ export async function fetchLeases(store) {
 
 export async function updateLease({ store, lease }) {
   const response = await store.lease.update(lease);
+  return response.data;
+}
+
+export async function fetchInterventions(store) {
+  const response = await store.intervention.fetch();
+  return response.data;
+}
+
+export async function fetchIntervention(store, interventionId) {
+  const response = await apiFetcher().get(`/interventions/${interventionId}`);
+  return response.data;
+}
+
+export async function updateIntervention(store, interventionId, data) {
+  const response = await apiFetcher().patch(`/interventions/${interventionId}`, data);
+  return response.data;
+}
+
+export async function addInterventionComment(store, interventionId, comment) {
+  const response = await apiFetcher().post(`/interventions/${interventionId}/comments`, comment);
+  return response.data;
+}
+export async function deleteIntervention(store, interventionId) {
+  const response = await apiFetcher().delete(`/interventions/${interventionId}`);
   return response.data;
 }

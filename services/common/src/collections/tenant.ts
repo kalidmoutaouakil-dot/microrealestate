@@ -126,7 +126,6 @@ const TenantSchema = new mongoose.Schema<CollectionTypes.Tenant>({
   discount: Number,
   guaranty: Number,
   guarantyPayback: Number,
-
   // ui state
   stepperMode: { type: Boolean, default: false }
 });

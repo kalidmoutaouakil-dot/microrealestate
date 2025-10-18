@@ -10,3 +10,4 @@ export { default as Template } from './template.js';
 export { default as Tenant } from './tenant.js';
 export const ObjectId = mongoose.Types.ObjectId;
 export const startSession = mongoose.startSession;
+export { default as Intervention } from './intervention.js';

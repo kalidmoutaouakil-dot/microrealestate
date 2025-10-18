@@ -1,5 +1,6 @@
 import { makeObservable, observable } from 'mobx';
 import { setAccessToken, setOrganizationId } from '../utils/fetch';
+import Intervention from './Intervention';
 
 import Accounting from './Accounting';
 import AppHistory from './AppHistory';
@@ -27,6 +28,7 @@ export default class Store {
     this.document = new Document();
     this.dashboard = new Dashboard();
     this.accounting = new Accounting();
+    this.intervention = new Intervention();
 
     makeObservable(this, {
       user: observable,
@@ -39,7 +41,8 @@ export default class Store {
       document: observable,
       dashboard: observable,
       accounting: observable,
-      appHistory: observable
+      appHistory: observable,
+      intervention: observable
     });
   }
 

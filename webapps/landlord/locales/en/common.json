@@ -252,6 +252,7 @@
   "Note": "Note",
   "Note (only visible to landlord)": "Note (only visible to landlord)",
   "Number of terms": "Number of terms",
+  "Rent due day": "Rent due day",
   "Occupancy rate": "Occupancy rate",
   "Occupied by {{tenant}}": "Occupied by {{tenant}}",
   "occupied by {{tenantName}}": "occupied by {{tenantName}}",

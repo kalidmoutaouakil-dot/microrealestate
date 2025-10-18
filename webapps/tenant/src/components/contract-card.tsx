@@ -11,9 +11,10 @@ import ContractStatus from './contract-status';
 import { getFormatNumber } from '@/utils/formatnumber';
 import { getMoment } from '@/utils';
 import getTranslation from '@/utils/i18n/server/getTranslation';
-import { Info } from 'lucide-react';
+import { Info, Wrench } from 'lucide-react';
 import { InvoiceTable } from '@/components/invoice-table';
 import { LabelValue } from '@/components/label-value';
+import Link from 'next/link';
 import type { Lease } from '@/types';
 
 export async function ContractCard({ lease }: { lease: Lease }) {
@@ -44,7 +45,15 @@ export async function ContractCard({ lease }: { lease: Lease }) {
                 </HoverCard>
               </div>
             </div>
-            <ContractStatus lease={lease} />
+            <div className="flex items-center gap-2">
+              <ContractStatus lease={lease} />
+              <Link href="/interventions">
+                <Button variant="outline" size="sm" className="gap-2">
+                  <Wrench className="h-4 w-4" />
+                  {t('Request intervention')}
+                </Button>
+              </Link>
+            </div>
           </div>
         </CardTitle>
       </CardHeader>

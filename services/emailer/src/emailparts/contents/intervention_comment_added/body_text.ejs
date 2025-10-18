@@ -1,0 +1,25 @@
+💬 NOUVEAU COMMENTAIRE SUR UNE INTERVENTION
+
+Bonjour,
+
+Votre locataire <%= tenantName %> a ajouté un commentaire sur une demande d'intervention.
+
+DÉTAILS
+-------
+Intervention : <%= title %>
+Bien concerné : <%= propertyName %>
+Auteur : <%= commentAuthor %>
+Date : <%= commentDate %>
+
+COMMENTAIRE
+-----------
+"<%= commentMessage %>"
+
+Consultez l'intervention pour répondre à votre locataire :
+<%= process.env.APP_URL || 'https://mre.mpcz.fr' %>/landlord
+
+Cordialement,
+<%= process.env.APP_NAME || 'SMMS' %>
+
+---
+Cet email a été envoyé automatiquement, merci de ne pas y répondre.

@@ -252,6 +252,7 @@
   "Note": "Nota",
   "Note (only visible to landlord)": "Nota (somente visível para a organização)",
   "Number of terms": "Número de ciclos",
+  "Rent due day": "Dia de vencimento do aluguel",
   "Occupancy rate": "Taxa de ocupação",
   "Occupied by {{tenant}}": "Ocupado por {{tenant}}",
   "occupied by {{tenantName}}": "ocupado por {{tenantName}}",

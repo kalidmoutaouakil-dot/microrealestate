@@ -1,4 +1,6 @@
 FROM node:20-bookworm-slim AS base
+ARG NODE_OPTIONS
+ENV NODE_OPTIONS=$NODE_OPTIONS
 
 FROM base AS deps
 WORKDIR /usr/app

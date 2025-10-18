@@ -9,9 +9,10 @@ const LeaseSchema = new mongoose.Schema<CollectionTypes.Lease>({
   numberOfTerms: Number,
   timeRange: { type: String, enum: ['days', 'weeks', 'months', 'years'] },
   active: Boolean,
-
+   
   // ui state
-  stepperMode: { type: Boolean, default: false }
+  stepperMode: { type: Boolean, default: false },
+  dueDateDay: { type: Number, enum: [5, 10, 15], default: 5 }
 });
 
 export default mongoose.model<CollectionTypes.Lease>('Lease', LeaseSchema);

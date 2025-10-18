@@ -1,0 +1,35 @@
+🔔 NOUVELLE DEMANDE D'INTERVENTION
+
+Bonjour,
+
+Une nouvelle demande d'intervention a été soumise par votre locataire.
+
+DÉTAILS DE LA DEMANDE
+----------------------
+Titre : <%= title %>
+
+INFORMATIONS LOCATAIRE
+----------------------
+Nom : <%= tenantName %>
+Email : <%= tenantEmail %>
+<% if (tenantPhone && tenantPhone !== 'Non renseigné') { %>Téléphone : <%= tenantPhone %><% } %>
+
+INFORMATIONS INTERVENTION
+-------------------------
+Bien concerné : <%= propertyName %>
+Catégorie : <%= category %>
+Priorité : <%= priority %>
+Date de création : <%= createdDate %>
+
+DESCRIPTION
+-----------
+<%= description %>
+
+Vous pouvez consulter et traiter cette demande depuis votre espace de gestion :
+<%= process.env.APP_URL || 'https://mre.mpcz.fr' %>/landlord
+
+Cordialement,
+<%= process.env.APP_NAME || 'SMMS' %>
+
+---
+Cet email a été envoyé automatiquement, merci de ne pas y répondre.

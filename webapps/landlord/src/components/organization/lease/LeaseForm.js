@@ -21,6 +21,7 @@ function initValues(lease) {
     description: lease?.description || '',
     numberOfTerms: lease?.numberOfTerms || '',
     timeRange: lease?.timeRange || '',
+    dueDateDay: lease?.dueDateDay || 5,
     active: lease?.active || true
   };
 }
@@ -37,6 +38,9 @@ function getValidationSchema(newLease, existingLeases) {
     description: Yup.string(),
     numberOfTerms: Yup.number().integer().min(1).required(),
     timeRange: Yup.string().required(),
+    dueDateDay: Yup.number()
+      .oneOf([5, 10, 15])
+      .required(),
     active: Yup.boolean().required()
   });
 }
@@ -105,6 +109,15 @@ const LeaseForm = ({ onSubmit }) => {
                     disabled={values.usedByTenants}
                   />
                 </div>
+                <SelectField
+  		   label={t('Rent due day')}
+		   name="dueDateDay"
+		   values={[
+		     { id: 5, label: '5 du mois', value: 5 },
+                     { id: 10, label: '10 du mois', value: 10 },
+                     { id: 15, label: '15 du mois', value: 15 },
+                   ]}
+                />
               </Section>
               <SubmitButton
                 label={!isSubmitting ? t('Save') : t('Submitting')}

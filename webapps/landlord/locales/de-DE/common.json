@@ -250,6 +250,7 @@
   "Note": "Mitteilung",
   "Note (only visible to landlord)": "Mitteilung (nur für Vermieter sichtbar)",
   "Number of terms": "Anzahl der bedingungen",
+  "Rent due day": "Fälligkeitstag der Miete",
   "Occupancy rate": "Belegungsrate",
   "Occupied by {{tenant}}": "Besetzt von {{tenant}}",
   "occupied by {{tenantName}}": "Besetzt von {{tenantName}}",

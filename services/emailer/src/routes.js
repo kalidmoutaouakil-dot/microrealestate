@@ -23,6 +23,11 @@ async function _send(req, res) {
         'invoice',
         'rentcall',
         'rentcall_last_reminder',
+        'intervention_status_changed',
+        'intervention_comment_added',
+        'intervention_comment_landlord',
+        'intervention_created_tenant',
+        'intervention_created_landlord',
         'rentcall_reminder'
       ];
       break;

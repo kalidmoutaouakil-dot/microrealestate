@@ -17,6 +17,57 @@ export namespace CollectionTypes {
     country: string;
   };
 
+  export type Intervention = {
+    _id: string;
+     realmId: string;
+  
+     // Locataire
+     tenantId: string;
+     tenantName: string;
+     tenantEmail: string;
+     tenantPhone?: string;
+  
+     // Bien concerné
+     propertyId: string;
+     propertyName: string;
+  
+     // Détails
+     title: string;
+     description: string;
+     category: 'plumbing' | 'electricity' | 'heating' | 'lock' | 'other';
+     priority: 'low' | 'medium' | 'high' | 'urgent';
+  
+     // Statut
+     status: 'pending' | 'in_progress' | 'scheduled' | 'completed' | 'cancelled';
+  
+     // Dates
+     createdDate: Date;
+     scheduledDate?: Date;
+     completedDate?: Date;
+     updatedDate: Date;
+  
+     // Pièces jointes
+     attachments?: {
+       filename: string;
+       url: string;
+       uploadDate: Date;
+     }[];
+  
+     // Commentaires
+     comments?: {
+       authorId: string;
+       authorName: string;
+       authorRole: 'tenant' | 'landlord';
+       message: string;
+       date: Date;
+     }[];
+  
+     // Intervention
+     assignedTo?: string;
+     estimatedCost?: number;
+     actualCost?: number;
+  };
+
   export type Account = {
     _id: string;
     firstname: string;
@@ -129,6 +180,7 @@ export namespace CollectionTypes {
     timeRange: LeaseTimeRange;
     active: boolean;
     stepperMode: boolean;
+    dueDateDay: 5 | 10 | 15;
   };
 
   export type Property = {
@@ -264,7 +316,6 @@ export namespace CollectionTypes {
     discount: number;
     guaranty: number;
     guarantyPayback: number;
-
     stepperMode: boolean;
   };
 }

@@ -1,0 +1,22 @@
+<%= subject %>
+
+Bonjour <%= tenantName %>,
+
+<%= message %>
+
+DÉTAILS DE VOTRE DEMANDE
+-------------------------
+Titre : <%= title %>
+Bien concerné : <%= propertyName %>
+Ancien statut : <%= oldStatus %>
+Nouveau statut : <%= newStatus %>
+Date de mise à jour : <%= updatedDate %>
+
+Vous pouvez consulter les détails depuis votre espace locataire :
+<%= process.env.APP_TENANT_URL || 'https://mre.mpcz.fr/tenant' %>/fr/interventions
+
+Cordialement,
+<%= process.env.APP_NAME || 'SMMS' %>
+
+---
+Cet email a été envoyé automatiquement, merci de ne pas y répondre.

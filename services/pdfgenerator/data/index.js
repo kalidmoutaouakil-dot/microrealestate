@@ -72,7 +72,16 @@ export async function getRentsData(params) {
     ],
     contract: {
       name: dbTenant.contract,
-      lease: dbTenant.leaseId,
+      lease: {
+        _id: dbTenant.leaseId._id,
+        name: dbTenant.leaseId.name,
+        description: dbTenant.leaseId.description,
+        numberOfTerms: dbTenant.leaseId.numberOfTerms,
+        timeRange: dbTenant.leaseId.timeRange,
+        dueDateDay: dbTenant.leaseId.dueDateDay || 1,
+        active: dbTenant.leaseId.active,
+        stepperMode: dbTenant.leaseId.stepperMode
+      },
       beginDate: dbTenant.beginDate,
       endDate: dbTenant.endDate,
       properties: dbTenant.properties.reduce((acc, { propertyId }) => {

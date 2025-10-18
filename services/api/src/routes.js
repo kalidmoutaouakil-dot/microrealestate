@@ -1,3 +1,4 @@
+import * as interventionManager from './managers/interventionmanager.js';
 import * as accountingManager from './managers/accountingmanager.js';
 import * as dashboardManager from './managers/dashboardmanager.js';
 import * as emailManager from './managers/emailmanager.js';
@@ -105,6 +106,16 @@ export default function routes() {
   emailRouter.post('/', Middlewares.asyncWrapper(emailManager.send));
   router.use('/emails', emailRouter);
 
+  // Routes pour les interventions
+  const interventionsRouter = express.Router();
+  interventionsRouter.get('/', Middlewares.asyncWrapper(interventionManager.all));
+  interventionsRouter.get('/:id', Middlewares.asyncWrapper(interventionManager.one));
+  interventionsRouter.post('/', Middlewares.asyncWrapper(interventionManager.add));
+  interventionsRouter.patch('/:id', Middlewares.asyncWrapper(interventionManager.update));
+  interventionsRouter.delete('/:id', Middlewares.asyncWrapper(interventionManager.remove));
+  interventionsRouter.post('/:id/comments', Middlewares.asyncWrapper(interventionManager.addComment));
+  router.use('/interventions', interventionsRouter);
+  
   const apiRouter = express.Router();
   apiRouter.use('/api/v2', router);
 
